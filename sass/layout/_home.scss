@@ -1,4 +1,37 @@
+
 .notice__item a {
-    display: flex;
+  display: flex;
+  text-decoration: none;
+  padding:0.75rem 1rem;
+  .thumbnail__wrapper {
+    flex-basis:33.33%;
+    height:100px;
+    overflow:hidden;
+    margin-right: 1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:$base-border-radius;
+    border:$base-border;
+    .thumbnail {
+      height:100%;
+      width:100%;
+      object-fit: cover;
+    }
+  }
+  .post__desc {
+    flex-basis:66.66%;
+    .post__desc-title {
+      font-size: 0.8125rem;
+      margin:0;
+    }
+    .post__desc-date{
+      font-size:0.75rem;
+    }
+    .post__desc-view{
+      font-size:0.75rem;
+      @include clearfix;
+    }
+  }
 
 }

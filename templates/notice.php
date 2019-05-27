@@ -5,7 +5,7 @@
 $args = array(
     'post_type' => 'post',
     'post_status' => 'publish',
-    'posts_per_page' => 10
+    'posts_per_page' => 6
 );
 
 // The Query
@@ -19,23 +19,26 @@ if ($query->have_posts()) : ?>
     <?php while ($query->have_posts()) : $query->the_post(); ?>
         <article class="notice__item">
             <a href="<?php the_permalink(); ?>">
+                <div class="thumbnail__wrapper">
                 <?php
                 /**
                  * 썸네일 이미지가 존재하는지 판단
                  */
                 if (has_post_thumbnail()) : ?>
                     <!-- 썸네일 이미지 출력 -->
-                    <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
+                    <img class="thumbnail" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
                 <?php else : ?>
 
-                    <div class="default_thumbnail">이미지가 없습니다</div>
+                    <img class="thumbnail" src="<?php echo get_template_directory_uri(); ?>/assets/img/default_thumbnail.png"/>
 
                 <?php endif; ?>
-
+                </div>
+                <div class="post__desc">
                 <!-- 타이틀 출력 -->
-                <h2><?php the_title(); ?></h2>
-                <span><?php the_date(); ?></span>
-                <?php echo get_post_view(); ?>
+                <h2 class="post__desc-title"><?php the_title(); ?></h2>
+                <span class="post__desc-date"><?php the_date(); ?></span>
+                <span class="post__desc-view"><?php echo get_post_view(); ?></span>
+                </div>
             </a>
         </article>
     <?php endwhile; ?>
